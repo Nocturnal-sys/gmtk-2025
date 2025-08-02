@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbw60c5b3yagy"]
+
+[ext_resource type="Script" uid="uid://bx0khpi4gcm4r" path="res://Scripts/Classes/settlement.gd" id="1_b47in"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvawv"]
+size = Vector2(8, 8)
+
+[node name="Settlement" type="Area2D"]
+script = ExtResource("1_b47in")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_hvawv")

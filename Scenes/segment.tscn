@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dg43vvltq6eov" path="res://Resources/tail_right.tres" id="2_4bgdj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgx3i"]
-size = Vector2(16, 16)
+size = Vector2(8, 8)
 
 [node name="Segment" type="Area2D"]
 script = ExtResource("1_4bgdj")

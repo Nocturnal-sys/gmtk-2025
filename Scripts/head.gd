@@ -8,6 +8,7 @@ var direction : Vector2 = Vector2.UP
 var next_direction : Vector2 = Vector2.UP
 
 signal eat(item : Food)
+signal end()
 
 
 func face_direction(dir : String) -> void:
@@ -29,3 +30,5 @@ func face_direction(dir : String) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area is Food:
 		eat.emit(area)
+	elif area is Segment:
+		end.emit()

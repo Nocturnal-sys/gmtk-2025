@@ -17,6 +17,7 @@ const TAIL_RIGHT = preload("res://Resources/tail_right.tres")
 
 @export var to_follow : Area2D
 
+var is_corner: bool = false
 var prev_position : Vector2
 var tail : bool = false
 var direction : Vector2 = Vector2.UP
@@ -47,12 +48,14 @@ func move() -> void:
 func change_sprite_direction():
 	if not tail:
 		if direction == to_follow.direction:
+			is_corner = false
 			match direction:
 				Vector2.UP, Vector2.DOWN:
 					sprite.texture = BODY_UP_DOWN
 				Vector2.LEFT, Vector2.RIGHT:
 					sprite.texture = BODY_SIDEWAYS
 		else:
+			is_corner = true
 			match to_follow.direction - direction:
 				Vector2(1,1):
 					sprite.texture = BODY_BEND_DOWN_L
@@ -63,6 +66,7 @@ func change_sprite_direction():
 				Vector2(-1,-1):
 					sprite.texture = BODY_BEND_UP_R
 	else:
+		is_corner = false
 		match to_follow.direction:
 			Vector2.UP:
 				sprite.texture = TAIL_UP

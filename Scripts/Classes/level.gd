@@ -4,7 +4,16 @@ extends Node2D
 @onready var snake_bits: Node2D = $SnakeBits
 @onready var head: Head = $SnakeBits/Head
 @onready var timer: Timer = $Timer
+@onready var death_zone: DeathZone = $DeathZone
+@onready var enclosure: CollisionPolygon2D = $EnclosedArea/Enclosure
+@onready var enclosed_area: Area2D = $EnclosedArea
+@onready var end_of_level: CanvasLayer = $EndOfLevel
+@onready var settlements: Node2D = $Settlements
 
+@export var speed : float = 1.0
+@export var next : String
+
+const GAME_OVER = preload("res://Scenes/game_over.tscn")
 const APPLE = preload("res://Scenes/apple.tscn")
 const SEGMENT = preload("res://Scenes/segment.tscn")
 const BODY_STRAIGHT = preload("res://Resources/body_straight.tres")
@@ -13,9 +22,9 @@ const TILE_SIZE = 16
 
 var food : Food
 var segment : Segment
-var speed : float
 var direction : String = "up"
 var prev_direction : String = "up"
+var next_level
 var dir_dict : Dictionary = {
 	"up"    : Vector2.UP,
 	"down"  : Vector2.DOWN,
@@ -25,9 +34,10 @@ var dir_dict : Dictionary = {
 
 
 func _ready() -> void:
+	next_level = load(next)
+	death_zone.area_exited.connect(game_over)
 	create_food()
 	snake_bits.get_child(-1).set_tail()
-	speed = 5
 	timer.wait_time = 1/speed
 	timer.start()
 	_face_direction("up")
@@ -42,16 +52,21 @@ func move() -> void:
 
 
 func _eat(item : Food):
+	ScoreKeeper.increase_eaten()
 	item.queue_free()
 	create_food()
 	add_segment()
 
 
 func create_food() -> void:
-	var new_food_pos = Vector2(randi_range(0, 31) * 16, randi_range(0, 31) * 16)
+	var new_food_pos = Vector2(randi_range(1, 30) * 16, randi_range(1, 30) * 16)
 	var space_occupied : bool = false
 	for bit in snake_bits.get_children():
-		if new_food_pos == bit.position:
+		if new_food_pos == bit.global_position:
+			space_occupied = true
+			break
+	for settlement in settlements.get_children():
+		if new_food_pos == settlement.global_position:
 			space_occupied = true
 			break
 	if space_occupied:
@@ -94,3 +109,44 @@ func _face_direction(dir: String) -> void:
 		direction = prev_direction
 		return
 	head.face_direction(dir)
+
+
+func finish_level():
+	print("level finished")
+	var snake_points = PackedVector2Array()
+	for bit in snake_bits.get_children():
+		if bit is Head or bit.is_corner == true:
+			snake_points.append(bit.global_position)
+	enclosure.call_deferred("set_polygon",snake_points)
+	await get_tree().create_timer(1/(speed*2)).timeout
+	call_deferred("_process_end_of_level")
+
+
+func _process_end_of_level():
+	
+	var enclosed_areas: Array[Area2D] = enclosed_area.get_overlapping_areas()
+	var score: int = 0
+	for area in enclosed_areas:
+		if area is Settlement:
+			score += 1
+	if score == 0:
+		game_over(head)
+	else:
+		get_tree().paused = true
+		ScoreKeeper.increase_score(score)
+		end_of_level.show()
+
+
+func game_over(area : Area2D):
+	if area is Head:
+		get_tree().paused = false
+		ScoreKeeper.reset_eaten()
+		ScoreKeeper.reset_score()
+		LevelManager.game_over()
+
+
+func _advance_level() -> void:
+	get_tree().paused = false
+	ScoreKeeper.reset_eaten()
+	ScoreKeeper.reset_score()
+	LevelManager.change_scene(next_level)

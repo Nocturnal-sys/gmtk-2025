@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="GMTK-2025"
-run/main_scene="uid://bfankajlkcnmb"
+run/main_scene="uid://dig3nxwpygvrn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+
+[autoload]
+
+LevelManager="*res://Scripts/Autoloads/level_manager.gd"
+ScoreKeeper="*res://Scripts/Autoloads/score_keeper.gd"
 
 [display]
 

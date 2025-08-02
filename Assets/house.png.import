@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc4kv4d4m1vyv"
-path="res://.godot/imported/body_sideways.png-b265116fa124e5370d7341d8859cea48.ctex"
+uid="uid://bu5cxeocvrnfm"
+path="res://.godot/imported/house.png-073edd49ca9e12a049a62648e99b8173.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/body_sideways.png"
-dest_files=["res://.godot/imported/body_sideways.png-b265116fa124e5370d7341d8859cea48.ctex"]
+source_file="res://Assets/house.png"
+dest_files=["res://.godot/imported/house.png-073edd49ca9e12a049a62648e99b8173.ctex"]
 
 [params]
 

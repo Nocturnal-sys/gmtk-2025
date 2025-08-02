@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dddulmx0xqovs"]
+
+[ext_resource type="Script" uid="uid://bx0khpi4gcm4r" path="res://Scripts/Classes/settlement.gd" id="1_n87ef"]
+[ext_resource type="Texture2D" uid="uid://bu5cxeocvrnfm" path="res://Assets/house.png" id="2_3jr7h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqtyj"]
+size = Vector2(24, 40)
+
+[node name="House" type="Area2D"]
+script = ExtResource("1_n87ef")
+metadata/_custom_type_script = "uid://bx0khpi4gcm4r"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, 24)
+texture = ExtResource("2_3jr7h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 24)
+shape = SubResource("RectangleShape2D_iqtyj")

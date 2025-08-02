@@ -1,15 +1,16 @@
-[gd_scene load_steps=11 format=4 uid="uid://bfankajlkcnmb"]
+[gd_scene load_steps=12 format=4 uid="uid://4ttbsglyifkg"]
 
-[ext_resource type="Script" uid="uid://jdmo3tqm7j3s" path="res://Scripts/Classes/level.gd" id="1_4dpyx"]
-[ext_resource type="Texture2D" uid="uid://di4tjlq10eefg" path="res://Assets/SnakeSprites/Snake.png" id="2_3mqfk"]
-[ext_resource type="PackedScene" uid="uid://bfy8hsy7iupfg" path="res://Scenes/head.tscn" id="3_iixi8"]
-[ext_resource type="PackedScene" uid="uid://2ns4gfenwnqg" path="res://Scenes/segment.tscn" id="4_cyadu"]
-[ext_resource type="Script" uid="uid://bn0xqhtwvthj7" path="res://Scripts/Classes/death_zone.gd" id="5_cyadu"]
-[ext_resource type="PackedScene" uid="uid://d1kdhacj2lc87" path="res://Scenes/tent.tscn" id="6_xgxfi"]
-[ext_resource type="PackedScene" uid="uid://cavyng884ef4a" path="res://Scenes/end_of_level.tscn" id="7_5f3p6"]
+[ext_resource type="Script" uid="uid://jdmo3tqm7j3s" path="res://Scripts/Classes/level.gd" id="1_fphuk"]
+[ext_resource type="Texture2D" uid="uid://di4tjlq10eefg" path="res://Assets/SnakeSprites/Snake.png" id="2_pnnky"]
+[ext_resource type="PackedScene" uid="uid://bfy8hsy7iupfg" path="res://Scenes/head.tscn" id="3_blpqv"]
+[ext_resource type="PackedScene" uid="uid://2ns4gfenwnqg" path="res://Scenes/segment.tscn" id="4_1jlnc"]
+[ext_resource type="Script" uid="uid://bn0xqhtwvthj7" path="res://Scripts/Classes/death_zone.gd" id="5_u40f0"]
+[ext_resource type="PackedScene" uid="uid://d1kdhacj2lc87" path="res://Scenes/tent.tscn" id="6_0x4y1"]
+[ext_resource type="PackedScene" uid="uid://dddulmx0xqovs" path="res://Scenes/house.tscn" id="7_pnnky"]
+[ext_resource type="PackedScene" uid="uid://cavyng884ef4a" path="res://Scenes/end_of_level.tscn" id="7_uqiic"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iixi8"]
-texture = ExtResource("2_3mqfk")
+texture = ExtResource("2_pnnky")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -322,9 +323,8 @@ size = Vector2(512, 512)
 
 [node name="Level1" type="Node2D"]
 process_mode = 3
-script = ExtResource("1_4dpyx")
+script = ExtResource("1_fphuk")
 speed = 10.0
-next = "res://Scenes/Levels/level_2.tscn"
 metadata/_custom_type_script = "uid://jdmo3tqm7j3s"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -335,14 +335,14 @@ tile_set = SubResource("TileSet_cyadu")
 z_index = 60
 position = Vector2(128, 320)
 
-[node name="Head" parent="SnakeBits" instance=ExtResource("3_iixi8")]
+[node name="Head" parent="SnakeBits" instance=ExtResource("3_blpqv")]
 z_index = 500
 
-[node name="Segment" parent="SnakeBits" node_paths=PackedStringArray("to_follow") instance=ExtResource("4_cyadu")]
+[node name="Segment" parent="SnakeBits" node_paths=PackedStringArray("to_follow") instance=ExtResource("4_1jlnc")]
 position = Vector2(0, 16)
 to_follow = NodePath("../Head")
 
-[node name="Segment2" parent="SnakeBits" node_paths=PackedStringArray("to_follow") instance=ExtResource("4_cyadu")]
+[node name="Segment2" parent="SnakeBits" node_paths=PackedStringArray("to_follow") instance=ExtResource("4_1jlnc")]
 position = Vector2(0, 32)
 to_follow = NodePath("../Segment")
 
@@ -350,7 +350,7 @@ to_follow = NodePath("../Segment")
 process_mode = 1
 
 [node name="DeathZone" type="Area2D" parent="."]
-script = ExtResource("5_cyadu")
+script = ExtResource("5_u40f0")
 metadata/_custom_type_script = "uid://bn0xqhtwvthj7"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
@@ -363,10 +363,16 @@ shape = SubResource("RectangleShape2D_cyadu")
 
 [node name="Settlements" type="Node2D" parent="."]
 
-[node name="Tent" parent="Settlements" instance=ExtResource("6_xgxfi")]
-position = Vector2(240, 240)
+[node name="Tent" parent="Settlements" instance=ExtResource("6_0x4y1")]
+position = Vector2(240, 320)
 
-[node name="EndOfLevel" parent="." instance=ExtResource("7_5f3p6")]
+[node name="Tent2" parent="Settlements" instance=ExtResource("6_0x4y1")]
+position = Vector2(288, 256)
+
+[node name="House" parent="Settlements" instance=ExtResource("7_pnnky")]
+position = Vector2(240, 224)
+
+[node name="EndOfLevel" parent="." instance=ExtResource("7_uqiic")]
 visible = false
 
 [connection signal="eat" from="SnakeBits/Head" to="." method="_eat"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5fkygfly3jti"
-path="res://.godot/imported/body_bend_down.png-79c44f43c1360b1367eeb78c6dfc4f65.ctex"
+uid="uid://cp54wnncg1ywl"
+path="res://.godot/imported/body_bend_up.png-d0fd8571a4a74e48b32e4d54779ea8d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/body_bend_down.png"
-dest_files=["res://.godot/imported/body_bend_down.png-79c44f43c1360b1367eeb78c6dfc4f65.ctex"]
+source_file="res://Assets/SnakeSprites/body_bend_up.png"
+dest_files=["res://.godot/imported/body_bend_up.png-d0fd8571a4a74e48b32e4d54779ea8d2.ctex"]
 
 [params]
 

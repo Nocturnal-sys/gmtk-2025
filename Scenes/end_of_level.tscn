@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3 uid="uid://cavyng884ef4a"]
+
+[ext_resource type="Script" uid="uid://cf0rade8gfxsb" path="res://Scripts/end_of_level.gd" id="1_0xhxs"]
+[ext_resource type="FontFile" uid="uid://spuyq8rml8en" path="res://Assets/Fonts/PixelOperator8-Bold.ttf" id="2_g17do"]
+
+[node name="EndOfLevel" type="CanvasLayer"]
+script = ExtResource("1_0xhxs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.941176)
+offset_left = 128.0
+offset_top = 64.0
+offset_right = 384.0
+offset_bottom = 448.0
+color = Color(0.321569, 0.282353, 0.4, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+offset_left = 8.0
+offset_top = 128.0
+offset_right = 176.0
+offset_bottom = 163.0
+theme_override_fonts/font = ExtResource("2_g17do")
+text = "Settlements
+protected:"
+
+[node name="FoodLabel" type="Label" parent="ColorRect"]
+custom_minimum_size = Vector2(48, 16)
+offset_left = 176.0
+offset_top = 195.0
+offset_right = 224.0
+offset_bottom = 211.0
+theme_override_fonts/font = ExtResource("2_g17do")
+text = "0"
+
+[node name="SettlementLabel" type="Label" parent="ColorRect"]
+custom_minimum_size = Vector2(48, 16)
+offset_left = 176.0
+offset_top = 149.0
+offset_right = 224.0
+offset_bottom = 165.0
+theme_override_fonts/font = ExtResource("2_g17do")
+text = "0"
+
+[node name="Label3" type="Label" parent="ColorRect"]
+offset_left = 12.0
+offset_top = 28.0
+offset_right = 244.0
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("2_g17do")
+text = "Congratulations"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect"]
+offset_left = 8.0
+offset_top = 192.0
+offset_right = 176.0
+offset_bottom = 208.0
+theme_override_fonts/font = ExtResource("2_g17do")
+text = "Food eaten:"
+
+[node name="NextLevelButton" type="Button" parent="ColorRect"]
+offset_left = 64.0
+offset_top = 256.0
+offset_right = 192.0
+offset_bottom = 320.0
+theme_override_fonts/font = ExtResource("2_g17do")
+text = "Next
+Level"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="ColorRect/NextLevelButton" to="." method="_on_next_level_button_pressed"]

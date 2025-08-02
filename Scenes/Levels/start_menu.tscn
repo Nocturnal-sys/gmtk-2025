@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dig3nxwpygvrn"]
+
+[ext_resource type="FontFile" uid="uid://spuyq8rml8en" path="res://Assets/Fonts/PixelOperator8-Bold.ttf" id="1_g2dab"]
+[ext_resource type="Script" uid="uid://cfws1bclouoy7" path="res://Scripts/start_menu.gd" id="1_h0lgh"]
+
+[node name="StartMenu" type="CanvasLayer"]
+script = ExtResource("1_h0lgh")
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 384.0
+offset_bottom = 240.0
+theme_override_fonts/font = ExtResource("1_g2dab")
+text = "PLAY"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

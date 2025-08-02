@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://bfy8hsy7iupfg"]
 
-[ext_resource type="Texture2D" uid="uid://di4tjlq10eefg" path="res://Assets/Snake.png" id="1_8w53r"]
+[ext_resource type="Texture2D" uid="uid://di4tjlq10eefg" path="res://Assets/SnakeSprites/Snake.png" id="1_8w53r"]
 [ext_resource type="Script" uid="uid://7y8fuclneg26" path="res://Scripts/head.gd" id="1_dnf71"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8w53r"]
-size = Vector2(16, 16)
+size = Vector2(8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x4cii"]
 atlas = ExtResource("1_8w53r")
