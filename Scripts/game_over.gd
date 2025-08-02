@@ -11,4 +11,5 @@ func _ready() -> void:
 
 
 func _on_menu_button_pressed() -> void:
+	ScoreKeeper.new_game()
 	LevelManager.main_menu()

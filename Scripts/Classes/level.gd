@@ -20,6 +20,7 @@ const BODY_STRAIGHT = preload("res://Resources/body_straight.tres")
 const TAIL = preload("res://Resources/tail.tres")
 const TILE_SIZE = 16
 
+var end_handled: bool
 var food : Food
 var segment : Segment
 var direction : String = "up"
@@ -34,6 +35,7 @@ var dir_dict : Dictionary = {
 
 
 func _ready() -> void:
+	end_handled = false
 	next_level = load(next)
 	death_zone.area_exited.connect(game_over)
 	create_food()
@@ -112,7 +114,8 @@ func _face_direction(dir: String) -> void:
 
 
 func finish_level():
-	print("level finished")
+	if end_handled:
+		return
 	var snake_points = PackedVector2Array()
 	for bit in snake_bits.get_children():
 		if bit is Head or bit.is_corner == true:
@@ -123,7 +126,6 @@ func finish_level():
 
 
 func _process_end_of_level():
-	
 	var enclosed_areas: Array[Area2D] = enclosed_area.get_overlapping_areas()
 	var score: int = 0
 	for area in enclosed_areas:
@@ -131,13 +133,17 @@ func _process_end_of_level():
 			score += 1
 	if score == 0:
 		game_over(head)
+		end_handled = true
 	else:
 		get_tree().paused = true
 		ScoreKeeper.increase_score(score)
 		end_of_level.show()
+		end_handled = true
 
 
 func game_over(area : Area2D):
+	if end_handled:
+		return
 	if area is Head:
 		get_tree().paused = false
 		ScoreKeeper.reset_eaten()
@@ -146,7 +152,8 @@ func game_over(area : Area2D):
 
 
 func _advance_level() -> void:
+	LevelManager.change_scene(next_level)
 	get_tree().paused = false
 	ScoreKeeper.reset_eaten()
 	ScoreKeeper.reset_score()
-	LevelManager.change_scene(next_level)
+	

@@ -4,7 +4,6 @@ const GAME_OVER = preload("res://Scenes/game_over.tscn")
 
 
 func change_scene(next):
-	print(next)
 	get_tree().call_deferred("change_scene_to_packed", next)
 
 

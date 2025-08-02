@@ -38,3 +38,8 @@ func get_total_score() -> int:
 
 func get_total_eaten() -> int:
 	return total_eaten
+
+
+func new_game() -> void:
+	total_eaten = 0
+	total_score = 0
