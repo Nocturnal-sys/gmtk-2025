@@ -9,6 +9,7 @@ extends Node2D
 @onready var enclosed_area: Area2D = $EnclosedArea
 @onready var end_of_level: CanvasLayer = $EndOfLevel
 @onready var settlements: Node2D = $Settlements
+@onready var obstacles: Node2D = $Obstacles
 
 @export var speed : float = 1.0
 @export var next : String
@@ -43,6 +44,8 @@ func _ready() -> void:
 	timer.wait_time = 1/speed
 	timer.start()
 	_face_direction("up")
+	for rock in obstacles.get_children():
+		rock.area_entered.connect(_on_rock_area_entered)
 
 
 func move() -> void:
@@ -157,3 +160,8 @@ func _advance_level() -> void:
 	ScoreKeeper.reset_eaten()
 	ScoreKeeper.reset_score()
 	
+
+
+func _on_rock_area_entered(area: Area2D) -> void:
+	if area is Head:
+		game_over(area)
