@@ -1,19 +1,7 @@
 class_name Segment
 extends Area2D
 
-const TAIL_UP = preload("res://Resources/tail.tres")
-const BODY_UP_DOWN = preload("res://Resources/body_straight.tres")
-const BODY_SIDEWAYS = preload("res://Resources/body_sideways.tres")
-const BODY_BEND_DOWN_L = preload("res://Resources/body_bend_down_l.tres")
-const BODY_BEND_DOWN_R = preload("res://Resources/body_bend_down_r.tres")
-const BODY_BEND_UP_L = preload("res://Resources/body_bend_up_l.tres")
-const BODY_BEND_UP_R = preload("res://Resources/body_bend_up_r.tres")
-const TAIL_DOWN = preload("res://Resources/tail_down.tres")
-const TAIL_LEFT = preload("res://Resources/tail_left.tres")
-const TAIL_RIGHT = preload("res://Resources/tail_right.tres")
-
-
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var to_follow : Area2D
 
@@ -51,28 +39,28 @@ func change_sprite_direction():
 			is_corner = false
 			match direction:
 				Vector2.UP, Vector2.DOWN:
-					sprite.texture = BODY_UP_DOWN
+					sprite.play("up_down")
 				Vector2.LEFT, Vector2.RIGHT:
-					sprite.texture = BODY_SIDEWAYS
+					sprite.play("left_right")
 		else:
 			is_corner = true
 			match to_follow.direction - direction:
 				Vector2(1,1):
-					sprite.texture = BODY_BEND_DOWN_L
+					sprite.play("bend_down_l")
 				Vector2(-1,1):
-					sprite.texture = BODY_BEND_DOWN_R
+					sprite.play("bend_down_r")
 				Vector2(1,-1):
-					sprite.texture = BODY_BEND_UP_L
+					sprite.play("bend_up_l")
 				Vector2(-1,-1):
-					sprite.texture = BODY_BEND_UP_R
+					sprite.play("bend_up_r")
 	else:
 		is_corner = false
 		match to_follow.direction:
 			Vector2.UP:
-				sprite.texture = TAIL_UP
+				sprite.play("tail_up")
 			Vector2.DOWN:
-				sprite.texture = TAIL_DOWN
+				sprite.play("tail_down")
 			Vector2.LEFT:
-				sprite.texture = TAIL_LEFT
+				sprite.play("tail_left")
 			Vector2.RIGHT:
-				sprite.texture = TAIL_RIGHT
+				sprite.play("tail_right")
