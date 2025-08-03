@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dddulmx0xqovs"]
 
-[ext_resource type="Script" uid="uid://bx0khpi4gcm4r" path="res://Scripts/Classes/settlement.gd" id="1_n87ef"]
+[ext_resource type="Script" uid="uid://c1eq3aab2xq17" path="res://Scripts/Classes/house.gd" id="1_n87ef"]
 [ext_resource type="Texture2D" uid="uid://bu5cxeocvrnfm" path="res://Assets/house.png" id="2_3jr7h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iqtyj"]

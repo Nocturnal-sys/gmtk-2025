@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci4uegs2ys8s2"]
+
+[ext_resource type="Script" uid="uid://1vg6k1ohmodh" path="res://Scripts/rules.gd" id="1_o41bs"]
+[ext_resource type="FontFile" uid="uid://spuyq8rml8en" path="res://Assets/Fonts/PixelOperator8-Bold.ttf" id="1_twi68"]
+
+[node name="Rules" type="CanvasLayer"]
+script = ExtResource("1_o41bs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 512.0
+offset_bottom = 512.0
+color = Color(0.235294, 0.0705882, 0.286275, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 176.0
+offset_top = 48.0
+offset_right = 336.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("1_twi68")
+theme_override_font_sizes/font_size = 32
+text = "RULES"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 48.0
+offset_top = 128.0
+offset_right = 482.0
+offset_bottom = 353.0
+theme_override_fonts/font = ExtResource("1_twi68")
+theme_override_font_sizes/font_size = 16
+text = "-Eat food to grow longer.
+
+-Avoid obstacles such as rocks
+and settlements.
+
+-Loop your body around 
+settlements to protect them
+from bandits at night.
+
+-The more settlements you
+protect, and the more food you 
+eat, the higher your score
+will be."
+
+[node name="Button" type="Button" parent="."]
+offset_left = 188.0
+offset_top = 384.0
+offset_right = 324.0
+offset_bottom = 424.0
+theme_override_fonts/font = ExtResource("1_twi68")
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

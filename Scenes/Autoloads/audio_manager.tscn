@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://4rma6ld4yigf"]
+
+[ext_resource type="Script" uid="uid://bjrfaaihelmyf" path="res://Scripts/Autoloads/audio_manager.gd" id="1_rrpnt"]
+[ext_resource type="AudioStream" uid="uid://c5yojtklw3p40" path="res://Assets/Audio/Music/Far-Out-Pong-Heads.mp3" id="2_vqnun"]
+[ext_resource type="AudioStream" uid="uid://bp5nm0lurb4vo" path="res://Assets/Audio/Music/Dreaming-in-Puzzles_Looping.mp3" id="3_vqnun"]
+[ext_resource type="AudioStream" uid="uid://dbshrk4bqduaj" path="res://Assets/Audio/Music/The-Pixeltown-Shuffle-2_Looping.mp3" id="4_5iwq1"]
+[ext_resource type="AudioStream" uid="uid://b7ari4luerxxn" path="res://Assets/Audio/Sfx/game_over(Bells11).mp3" id="5_xntdh"]
+[ext_resource type="AudioStream" uid="uid://shta330d535n" path="res://Assets/Audio/Sfx/apple_munch.mp3" id="6_mq4is"]
+
+[node name="AudioManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_rrpnt")
+
+[node name="MainMenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_vqnun")
+bus = &"Music"
+
+[node name="MainGameLoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vqnun")
+bus = &"Music"
+
+[node name="VictoryLoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5iwq1")
+bus = &"Music"
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_xntdh")
+bus = &"Sfx"
+
+[node name="AppleMunch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_mq4is")
+bus = &"Sfx"

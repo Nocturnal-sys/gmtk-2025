@@ -13,9 +13,9 @@ color = Color(0.236258, 0.0689956, 0.285892, 1)
 
 [node name="Label" type="Label" parent="."]
 offset_left = 112.0
-offset_top = 64.0
+offset_top = 36.0
 offset_right = 400.0
-offset_bottom = 195.0
+offset_bottom = 176.0
 theme_override_constants/line_spacing = 12
 theme_override_fonts/font = ExtResource("1_ojehl")
 theme_override_font_sizes/font_size = 64
@@ -24,43 +24,68 @@ OVER"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 52.0
-offset_top = 236.0
-offset_right = 462.0
-offset_bottom = 256.0
+offset_left = 51.0
+offset_top = 240.0
+offset_right = 461.0
+offset_bottom = 260.0
 theme_override_constants/line_spacing = 12
 theme_override_fonts/font = ExtResource("1_ojehl")
 theme_override_font_sizes/font_size = 16
 text = "Total settlements protected:"
 horizontal_alignment = 1
 
-[node name="ScoreLabel" type="Label" parent="."]
-offset_left = 52.0
-offset_top = 276.0
-offset_right = 462.0
-offset_bottom = 296.0
+[node name="SettlementLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(114, 32)
+offset_left = 180.0
+offset_top = 272.0
+offset_right = 332.0
+offset_bottom = 304.0
 theme_override_constants/line_spacing = 12
 theme_override_fonts/font = ExtResource("1_ojehl")
 theme_override_font_sizes/font_size = 32
+text = "20/20"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(320, 48)
+offset_left = 96.0
+offset_top = 368.0
+offset_right = 416.0
+offset_bottom = 416.0
+theme_override_constants/line_spacing = 12
+theme_override_fonts/font = ExtResource("1_ojehl")
+theme_override_font_sizes/font_size = 48
 text = "0"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="."]
+custom_minimum_size = Vector2(114, 32)
+offset_left = 82.0
+offset_top = 320.0
+offset_right = 430.0
+offset_bottom = 352.0
+theme_override_constants/line_spacing = 12
+theme_override_fonts/font = ExtResource("1_ojehl")
+theme_override_font_sizes/font_size = 32
+text = "Total Score:"
 horizontal_alignment = 1
 
 [node name="FoodLabel" type="Label" parent="."]
-offset_left = 52.0
-offset_top = 372.0
-offset_right = 462.0
-offset_bottom = 404.0
+offset_left = 416.0
+offset_top = 192.0
+offset_right = 488.0
+offset_bottom = 216.0
 theme_override_constants/line_spacing = 12
 theme_override_fonts/font = ExtResource("1_ojehl")
-theme_override_font_sizes/font_size = 32
-text = "0"
+theme_override_font_sizes/font_size = 24
+text = "100"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="."]
-offset_left = 52.0
-offset_top = 331.0
-offset_right = 462.0
-offset_bottom = 351.0
+offset_left = 16.0
+offset_top = 194.0
+offset_right = 400.0
+offset_bottom = 214.0
 theme_override_constants/line_spacing = 12
 theme_override_fonts/font = ExtResource("1_ojehl")
 theme_override_font_sizes/font_size = 16

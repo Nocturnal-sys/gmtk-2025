@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 
 LevelManager="*res://Scripts/Autoloads/level_manager.gd"
 ScoreKeeper="*res://Scripts/Autoloads/score_keeper.gd"
+AudioManager="*res://Scenes/Autoloads/audio_manager.tscn"
 
 [display]
 

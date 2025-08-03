@@ -1,10 +1,12 @@
 extends Node
 
-var score : int = 0
+var protected : int = 0
 var eaten : int = 0
-var total_score : int = 0
+var total_protected : int = 0
 var total_eaten : int = 0
+var total_score: int = 0
 
+const TOTAL_SETTLEMENTS: int = 45
 
 func increase_eaten() -> void:
 	eaten += 1
@@ -14,12 +16,12 @@ func get_eaten() -> int:
 	return eaten
 
 
-func increase_score(num: int) -> void:
-	score += num
+func increase_protected(num: int) -> void:
+	protected += num
 
 
-func get_score() -> int:
-	return score
+func get_protected() -> int:
+	return protected
 
 
 func reset_eaten() -> void:
@@ -27,13 +29,13 @@ func reset_eaten() -> void:
 	eaten = 0
 
 
-func reset_score() -> void:
-	total_score += score
-	score = 0
+func reset_protected() -> void:
+	total_protected += protected
+	protected = 0
 
 
-func get_total_score() -> int:
-	return total_score
+func get_total_protected() -> int:
+	return total_protected
 
 
 func get_total_eaten() -> int:
@@ -42,4 +44,19 @@ func get_total_eaten() -> int:
 
 func new_game() -> void:
 	total_eaten = 0
+	total_protected = 0
 	total_score = 0
+	reset_eaten()
+	reset_protected()
+
+
+func increase_score(num) -> void:
+	total_score += num
+
+
+func get_score() -> int:
+	return total_score
+
+
+func get_total_settlements() -> int:
+	return TOTAL_SETTLEMENTS

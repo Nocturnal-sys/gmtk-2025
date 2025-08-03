@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://df31jxd5wgopx"]
+[gd_scene load_steps=13 format=4 uid="uid://df31jxd5wgopx"]
 
 [ext_resource type="Script" uid="uid://jdmo3tqm7j3s" path="res://Scripts/Classes/level.gd" id="1_x1k1j"]
 [ext_resource type="Texture2D" uid="uid://di4tjlq10eefg" path="res://Assets/SnakeSprites/Snake.png" id="2_4ahh4"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d1kdhacj2lc87" path="res://Scenes/tent.tscn" id="6_md4x4"]
 [ext_resource type="PackedScene" uid="uid://dddulmx0xqovs" path="res://Scenes/house.tscn" id="7_1hf40"]
 [ext_resource type="PackedScene" uid="uid://cavyng884ef4a" path="res://Scenes/end_of_level.tscn" id="8_13yca"]
+[ext_resource type="PackedScene" uid="uid://bn8cehsg56jan" path="res://Scenes/rock.tscn" id="9_4ahh4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iixi8"]
 texture = ExtResource("2_4ahh4")
@@ -347,6 +348,18 @@ to_follow = NodePath("../Head")
 position = Vector2(0, 32)
 to_follow = NodePath("../Segment")
 
+[node name="Segment3" parent="SnakeBits" node_paths=PackedStringArray("to_follow") instance=ExtResource("4_osqx1")]
+position = Vector2(0, 48)
+to_follow = NodePath("../Segment")
+
+[node name="Segment4" parent="SnakeBits" node_paths=PackedStringArray("to_follow") instance=ExtResource("4_osqx1")]
+position = Vector2(0, 64)
+to_follow = NodePath("../Segment")
+
+[node name="Segment5" parent="SnakeBits" node_paths=PackedStringArray("to_follow") instance=ExtResource("4_osqx1")]
+position = Vector2(0, 80)
+to_follow = NodePath("../Segment")
+
 [node name="Timer" type="Timer" parent="."]
 process_mode = 1
 
@@ -368,15 +381,39 @@ shape = SubResource("RectangleShape2D_cyadu")
 position = Vector2(240, 320)
 
 [node name="Tent2" parent="Settlements" instance=ExtResource("6_md4x4")]
-position = Vector2(288, 256)
+position = Vector2(192, 240)
 
 [node name="House" parent="Settlements" instance=ExtResource("7_1hf40")]
 position = Vector2(240, 224)
+
+[node name="House2" parent="Settlements" instance=ExtResource("7_1hf40")]
+position = Vector2(304, 240)
 
 [node name="EndOfLevel" parent="." instance=ExtResource("8_13yca")]
 visible = false
 
 [node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Rock" parent="Obstacles" instance=ExtResource("9_4ahh4")]
+position = Vector2(368, 160)
+
+[node name="Rock2" parent="Obstacles" instance=ExtResource("9_4ahh4")]
+position = Vector2(64, 160)
+
+[node name="Rock3" parent="Obstacles" instance=ExtResource("9_4ahh4")]
+position = Vector2(144, 80)
+
+[node name="Rock4" parent="Obstacles" instance=ExtResource("9_4ahh4")]
+position = Vector2(144, 464)
+
+[node name="Rock5" parent="Obstacles" instance=ExtResource("9_4ahh4")]
+position = Vector2(432, 336)
+
+[node name="Rock6" parent="Obstacles" instance=ExtResource("9_4ahh4")]
+position = Vector2(272, 96)
+
+[node name="Rock7" parent="Obstacles" instance=ExtResource("9_4ahh4")]
+position = Vector2(368, 432)
 
 [connection signal="eat" from="SnakeBits/Head" to="." method="_eat"]
 [connection signal="end" from="SnakeBits/Head" to="." method="finish_level"]

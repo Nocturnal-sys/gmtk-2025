@@ -36,16 +36,20 @@ var dir_dict : Dictionary = {
 
 
 func _ready() -> void:
+	AudioManager.play_main_loop()
 	end_handled = false
 	next_level = load(next)
 	death_zone.area_exited.connect(game_over)
 	create_food()
 	snake_bits.get_child(-1).set_tail()
 	timer.wait_time = 1/speed
+	await get_tree().create_timer(2).timeout
 	timer.start()
 	_face_direction("up")
 	for rock in obstacles.get_children():
 		rock.area_entered.connect(_on_rock_area_entered)
+	for settlement in settlements.get_children():
+		settlement.area_entered.connect(_on_rock_area_entered)
 
 
 func move() -> void:
@@ -57,6 +61,7 @@ func move() -> void:
 
 
 func _eat(item : Food):
+	AudioManager.play_munch()
 	ScoreKeeper.increase_eaten()
 	item.queue_free()
 	create_food()
@@ -66,16 +71,38 @@ func _eat(item : Food):
 func create_food() -> void:
 	var new_food_pos = Vector2(randi_range(1, 30) * 16, randi_range(1, 30) * 16)
 	var space_occupied : bool = false
+	var settlement_pos: Vector2
 	for bit in snake_bits.get_children():
 		if new_food_pos == bit.global_position:
 			space_occupied = true
 			break
 	for settlement in settlements.get_children():
-		if new_food_pos == settlement.global_position:
+		settlement_pos = settlement.global_position
+		match settlement.get_class():
+			Tent:
+				for i in 1:
+					for j in 1:
+						if new_food_pos == Vector2(settlement_pos.x+(i*16),
+						settlement_pos.y+(j*16)):
+							space_occupied = true
+			House:
+				for i in 1:
+					for j in 2:
+						if new_food_pos == Vector2(settlement_pos.x+(i*16),
+						settlement_pos.y+(j*16)):
+							space_occupied = true
+			Castle:
+				for i in 2:
+					for j in 3:
+						if new_food_pos == Vector2(settlement_pos.x+(i*16),
+						settlement_pos.y+(j*16)):
+							space_occupied = true
+	for obstacle in obstacles.get_children():
+		if new_food_pos == obstacle.global_position:
 			space_occupied = true
-			break
 	if space_occupied:
 		create_food()
+		return
 	else:
 		food = APPLE.instantiate()
 		call_deferred("add_child", food)
@@ -130,15 +157,26 @@ func finish_level():
 
 func _process_end_of_level():
 	var enclosed_areas: Array[Area2D] = enclosed_area.get_overlapping_areas()
+	var num: int = 0
 	var score: int = 0
 	for area in enclosed_areas:
 		if area is Settlement:
-			score += 1
-	if score == 0:
+			num += 1
+			match area.get_class():
+				Tent:
+					score += 5
+				House:
+					score += 20
+				Castle:
+					score += 50
+	if num == 0:
 		game_over(head)
 		end_handled = true
 	else:
 		get_tree().paused = true
+		AudioManager.stop_main_loop()
+		AudioManager.start_victory_loop()
+		ScoreKeeper.increase_protected(num)
 		ScoreKeeper.increase_score(score)
 		end_of_level.show()
 		end_handled = true
@@ -150,15 +188,16 @@ func game_over(area : Area2D):
 	if area is Head:
 		get_tree().paused = false
 		ScoreKeeper.reset_eaten()
-		ScoreKeeper.reset_score()
+		ScoreKeeper.reset_protected()
 		LevelManager.game_over()
 
 
 func _advance_level() -> void:
+	AudioManager.stop_victory_loop()
 	LevelManager.change_scene(next_level)
 	get_tree().paused = false
 	ScoreKeeper.reset_eaten()
-	ScoreKeeper.reset_score()
+	ScoreKeeper.reset_protected()
 	
 
 

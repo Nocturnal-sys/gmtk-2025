@@ -12,4 +12,6 @@ func main_menu():
 
 
 func game_over():
+	AudioManager.stop_main_loop()
+	AudioManager.play_game_over()
 	get_tree().call_deferred("change_scene_to_packed", GAME_OVER)
