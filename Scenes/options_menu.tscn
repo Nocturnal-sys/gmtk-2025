@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://duivem6bf4pjn"]
+
+[ext_resource type="Script" uid="uid://clfay7yxcfvuv" path="res://Scripts/options_menu.gd" id="1_l1wg4"]
+[ext_resource type="FontFile" uid="uid://spuyq8rml8en" path="res://Assets/Fonts/PixelOperator8-Bold.ttf" id="1_uj0ok"]
+[ext_resource type="PackedScene" uid="uid://ctprrwwluer33" path="res://Scenes/volume_slider.tscn" id="2_l1wg4"]
+
+[node name="OptionsMenu" type="CanvasLayer"]
+script = ExtResource("1_l1wg4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 512.0
+offset_bottom = 512.0
+color = Color(0.235294, 0.0705882, 0.286275, 1)
+
+[node name="MainLabel" type="Label" parent="."]
+offset_left = 224.0
+offset_top = 112.0
+offset_right = 286.0
+offset_bottom = 135.0
+theme_override_fonts/font = ExtResource("1_uj0ok")
+text = "Main"
+
+[node name="MusicLabel" type="Label" parent="."]
+offset_left = 216.0
+offset_top = 192.0
+offset_right = 294.0
+offset_bottom = 215.0
+theme_override_fonts/font = ExtResource("1_uj0ok")
+text = "Music"
+
+[node name="SfxLabel" type="Label" parent="."]
+offset_left = 232.0
+offset_top = 304.0
+offset_right = 280.0
+offset_bottom = 327.0
+theme_override_fonts/font = ExtResource("1_uj0ok")
+text = "SFX"
+
+[node name="MainSlider" parent="." instance=ExtResource("2_l1wg4")]
+offset_left = 168.0
+offset_top = 154.0
+offset_right = 344.0
+offset_bottom = 170.0
+bus_name = "Master"
+
+[node name="MusicSlider" parent="." instance=ExtResource("2_l1wg4")]
+offset_left = 168.0
+offset_top = 241.0
+offset_right = 344.0
+offset_bottom = 257.0
+bus_name = "Music"
+
+[node name="SfxSlider" parent="." instance=ExtResource("2_l1wg4")]
+offset_left = 168.0
+offset_top = 351.0
+offset_right = 344.0
+offset_bottom = 367.0
+bus_name = "Sfx"
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 220.0
+offset_top = 416.0
+offset_right = 292.0
+offset_bottom = 440.0
+theme_override_fonts/font = ExtResource("1_uj0ok")
+text = "Back"
+
+[connection signal="drag_ended" from="SfxSlider" to="." method="_on_sfx_slider_drag_ended"]
+[connection signal="drag_started" from="SfxSlider" to="." method="_on_sfx_slider_drag_started"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

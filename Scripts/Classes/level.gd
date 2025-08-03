@@ -80,20 +80,20 @@ func create_food() -> void:
 		settlement_pos = settlement.global_position
 		match settlement.get_class():
 			Tent:
-				for i in 1:
-					for j in 1:
-						if new_food_pos == Vector2(settlement_pos.x+(i*16),
-						settlement_pos.y+(j*16)):
-							space_occupied = true
-			House:
-				for i in 1:
+				for i in 2:
 					for j in 2:
 						if new_food_pos == Vector2(settlement_pos.x+(i*16),
 						settlement_pos.y+(j*16)):
 							space_occupied = true
-			Castle:
+			House:
 				for i in 2:
 					for j in 3:
+						if new_food_pos == Vector2(settlement_pos.x+(i*16),
+						settlement_pos.y+(j*16)):
+							space_occupied = true
+			Castle:
+				for i in 3:
+					for j in 4:
 						if new_food_pos == Vector2(settlement_pos.x+(i*16),
 						settlement_pos.y+(j*16)):
 							space_occupied = true
@@ -134,6 +134,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("face_right"):
 		prev_direction = direction
 		direction = "right"
+	if event.is_action_pressed("menu"):
+		LevelManager.options_menu()
 
 
 func _face_direction(dir: String) -> void:

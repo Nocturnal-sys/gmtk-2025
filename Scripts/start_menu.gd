@@ -16,3 +16,7 @@ func _on_start_button_pressed() -> void:
 
 func _on_rules_button_pressed() -> void:
 	LevelManager.change_scene(RULES)
+
+
+func _on_options_button_pressed() -> void:
+	LevelManager.options_menu()

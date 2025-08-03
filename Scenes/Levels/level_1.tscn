@@ -324,7 +324,7 @@ size = Vector2(512, 512)
 [node name="Level1" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_4dpyx")
-speed = 10.0
+speed = 8.0
 next = "res://Scenes/Levels/level_2.tscn"
 metadata/_custom_type_script = "uid://jdmo3tqm7j3s"
 

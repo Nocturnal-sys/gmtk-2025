@@ -325,7 +325,7 @@ size = Vector2(512, 512)
 [node name="Level3" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_doouk")
-speed = 10.0
+speed = 8.0
 next = "res://Scenes/win_screen.tscn"
 metadata/_custom_type_script = "uid://jdmo3tqm7j3s"
 

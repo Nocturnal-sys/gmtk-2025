@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctprrwwluer33"]
+
+[ext_resource type="Script" uid="uid://cdgshlk61c0h3" path="res://Scripts/volume_slider.gd" id="1_10ka0"]
+
+[node name="VolumeSlider" type="HSlider"]
+offset_right = 8.0
+offset_bottom = 16.0
+max_value = 1.0
+step = 0.01
+script = ExtResource("1_10ka0")
+
+[node name="Value" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]

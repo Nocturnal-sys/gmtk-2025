@@ -324,7 +324,7 @@ size = Vector2(512, 512)
 [node name="Level3" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_keyqw")
-speed = 10.0
+speed = 8.0
 next = "res://Scenes/win_screen.tscn"
 metadata/_custom_type_script = "uid://jdmo3tqm7j3s"
 
@@ -347,17 +347,14 @@ to_follow = NodePath("../Head")
 position = Vector2(0, 32)
 to_follow = NodePath("../Segment")
 
-[node name="Segment3" parent="SnakeBits" node_paths=PackedStringArray("to_follow") instance=ExtResource("4_slbhm")]
+[node name="Segment3" parent="SnakeBits" instance=ExtResource("4_slbhm")]
 position = Vector2(0, 48)
-to_follow = NodePath("")
 
-[node name="Segment4" parent="SnakeBits" node_paths=PackedStringArray("to_follow") instance=ExtResource("4_slbhm")]
+[node name="Segment4" parent="SnakeBits" instance=ExtResource("4_slbhm")]
 position = Vector2(0, 64)
-to_follow = NodePath("")
 
-[node name="Segment5" parent="SnakeBits" node_paths=PackedStringArray("to_follow") instance=ExtResource("4_slbhm")]
+[node name="Segment5" parent="SnakeBits" instance=ExtResource("4_slbhm")]
 position = Vector2(0, 80)
-to_follow = NodePath("")
 
 [node name="Timer" type="Timer" parent="."]
 process_mode = 1
