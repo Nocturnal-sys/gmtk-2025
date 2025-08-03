@@ -15,4 +15,4 @@ func _on_visibility_changed() -> void:
 	if not is_node_ready():
 		return
 	food_label.text = str(ScoreKeeper.get_eaten())
-	settlement_label.text = str(ScoreKeeper.get_score())
+	settlement_label.text = str(ScoreKeeper.get_protected())

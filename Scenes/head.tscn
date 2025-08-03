@@ -67,6 +67,6 @@ shape = SubResource("RectangleShape2D_8w53r")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_x4cii")
-animation = &"right"
+animation = &"up"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

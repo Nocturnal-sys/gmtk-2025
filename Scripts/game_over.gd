@@ -41,7 +41,11 @@ func _display_scores():
 	await display_tween.finished
 	display_tween.kill()
 	display_tween = create_tween()
-	display_tween.tween_property(self,"displayed_score",total_score*total_food,0.8)
+	display_tween.tween_property(self,"displayed_score",total_score*total_food,4)
+	if total_score>0:
+		AudioManager.play_score()
+	await display_tween.finished
+	AudioManager.stop_score()
 
 
 func _on_menu_button_pressed() -> void:

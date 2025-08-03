@@ -43,7 +43,7 @@ func _ready() -> void:
 	create_food()
 	snake_bits.get_child(-1).set_tail()
 	timer.wait_time = 1/speed
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1).timeout
 	timer.start()
 	_face_direction("up")
 	for rock in obstacles.get_children():

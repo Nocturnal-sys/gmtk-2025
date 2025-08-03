@@ -5,6 +5,7 @@ extends Node
 @onready var victory_loop: AudioStreamPlayer = $VictoryLoop
 @onready var game_over: AudioStreamPlayer = $GameOver
 @onready var apple_munch: AudioStreamPlayer = $AppleMunch
+@onready var score_sound: AudioStreamPlayer = $ScoreSound
 
 var fade_out_tween: Tween
 var fade_in_tween: Tween
@@ -80,3 +81,11 @@ func play_game_over():
 
 func play_munch():
 	apple_munch.play()
+
+
+func play_score():
+	score_sound.play()
+
+
+func stop_score():
+	score_sound.stop()
